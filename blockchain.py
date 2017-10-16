@@ -174,9 +174,10 @@ class Blockchain(object):
         :return: <bool> True if correct, False if not.
         """
 
+        proof_len = 4
         guess = f'{last_proof}{proof}'.encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
-        return guess_hash[:4] == "0000"
+        return all(i == "0" for i in guess_hash[:proof_len])
 
 
 # Instantiate the Node
